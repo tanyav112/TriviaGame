@@ -47,7 +47,7 @@ $('.container').append(`
     <h5 class="question">${question.question}</h5>
          <p>
           <label>
-              <input name="group1" type="radio" checked />
+              <input name="group1" type="radio"  />
               <span>${question.choices[0]}</span>
             </label>
           </p>
