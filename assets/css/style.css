@@ -10,3 +10,23 @@ html {
  font-display: black;
 }
 
+.trivia {
+background-color: rgb(103, 219, 247); opacity: 0.9;
+text-align: center;
+
+}
+
+p {
+ display: inline;
+}
+ 
+.answer { 
+  color: darkblue;
+   
+}
+
+
+.radio-radio[type="radio"]:checked + label:after{
+     border: 2px solid #ff9800;
+     background-color: #ff9800;
+}
