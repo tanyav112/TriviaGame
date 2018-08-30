@@ -26,7 +26,7 @@ let questions = [
   {
     id: 4,
    question: "According to Green mythology, who stole fire for mankind's benefit?",
-   choices: ['Zeus', 'Poseido', 'Artemis', 'Apollo', 'Prometheus' ],
+   choices: ['Zeus', 'Poseidon', 'Artemis', 'Apollo', 'Prometheus' ],
    correct: 'Prometheus '
   },
   {
@@ -84,21 +84,53 @@ $('.trivia').append(`
             </label>
           </p>
           <p>
-          <p class="answer">${question.correct}</p>
+          <p class="answer-${question.id}" style="visibility: hidden; font-weight: bold;  color: MidnightBlue;">${question.correct}</p>
          <br>
           <br>
     </div>
       `)
-    })
-     
-//click event for radio buttons
+    })     
+
+var qChoice0
+var qChoice1
+var qChoice2
+var qChoice3
+var qChoice4
+var qChoice5
+var qChoice6
+var qChoice7
+
+//click event for radio buttons - allows us to get the attribute of the question with "name" and the choice selected with "data-choice"
 $(document).on('click', '.choice', function() {
-console.log($(this).attr('name'))
-console.log($(this).attr('data-choice'))
-
-
-
+   let temp = $(this).attr('name').split('-')
+   let qId = temp[1]
+   window[`qChoice${qId}`] = $(this).attr('data-choice')
 })
 
 
+$('.finishQuiz').on('click', function () {
+   finishGame ()
+})
 
+//Function to finish game
+//Function to see answers and to check if they are correct and it tallies the correct answer count; 
+//if all correct you are alerted a perfect score, else better luck next time and the correct answers appear
+function finishGame () {
+  count = 0
+  for (let i = 0; i < questions.length; i++) {
+    $(`.answer-${i}`).css('visibility', 'visible')
+    if (window[`qChoice${i}`] === questions[i].correct) {
+      count++
+    }
+  }
+  if (count === 8) {
+    alert('Perfect Score!')
+  } else {
+    alert('Better luck next time!')
+  }
+}
+
+//Function for time of game and 
+setTimeout(function () {
+   finishGame()
+}, 12000)
