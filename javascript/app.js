@@ -116,6 +116,7 @@ $('.finishQuiz').on('click', function () {
 //Function to see answers and to check if they are correct and it tallies the correct answer count; 
 //if all correct you are alerted a perfect score, else better luck next time and the correct answers appear
 function finishGame () {
+  clearInterval(gameTimer)
   count = 0
   for (let i = 0; i < questions.length; i++) {
     $(`.answer-${i}`).css('visibility', 'visible')
@@ -130,7 +131,34 @@ function finishGame () {
   }
 }
 
+//Time conversion function to turn ms to min-sec
+function timeConversion (t) {
+  var minutes = Math.floor(t / 60)
+  var seconds = t - (minutes * 60)
+
+  if (seconds < 10) {
+    seconds = '0' + seconds
+  }
+
+  if (minutes === 0) {
+    minutes = '00'
+  } else if (minutes < 10) {
+    minutes = '0' + minutes
+  }
+
+  return minutes + ':' + seconds
+}
+
+let time = 120
+$('.time').html('02:00')
 //Function for time of game and 
-setTimeout(function () {
+let gameTimer = setInterval(function () {
+  time--
+  if (time > 0) {
+  $('.time').html(timeConversion(time))
+  }
+  else {
+  $('.time').html('00:00')
    finishGame()
-}, 12000)
+  }
+}, 1000)
