@@ -83,11 +83,10 @@ $('.trivia').append(`
               <span class="answer">${question.choices[4]}</span>
             </label>
           </p>
-          <p>
-          <p class="answer-${question.id}" style="visibility: hidden; font-weight: bold;  color: MidnightBlue;">${question.correct}</p>
-         <br>
-          <br>
-    </div>
+         </div>
+    <div>
+         <p class="answer-${question.id}" style="visibility: hidden; font-weight: bold;  color: MidnightBlue;">The correct answer is: ${question.correct}</p>
+    </div>    
       `)
     })     
 
@@ -135,7 +134,6 @@ function finishGame () {
 function timeConversion (t) {
   var minutes = Math.floor(t / 60)
   var seconds = t - (minutes * 60)
-
   if (seconds < 10) {
     seconds = '0' + seconds
   }
@@ -145,13 +143,12 @@ function timeConversion (t) {
   } else if (minutes < 10) {
     minutes = '0' + minutes
   }
-
   return minutes + ':' + seconds
 }
 
 let time = 120
 $('.time').html('02:00')
-//Function for time of game and 
+//Function for time of game end 
 let gameTimer = setInterval(function () {
   time--
   if (time > 0) {
